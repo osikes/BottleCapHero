@@ -7,7 +7,7 @@
 //
 
 #import "GamePlayLayer.h"
-
+#import "RaysCastCallBack.h"
 @implementation GamePlayLayer
 
 
@@ -31,7 +31,7 @@
 		//get random x coordinate
 	
 	CGPoint point =CGPointMake(arc4random()%320, 300);
-	
+    
     CGPoint shootVector = ccpSub(point, bottle.position);
     CGFloat shootAngle = ccpToAngle(shootVector);
     CGFloat cocosAngle = CC_RADIANS_TO_DEGREES(-1* shootAngle)+90;//account for orienation
@@ -54,23 +54,39 @@
 					   [CCRotateTo actionWithDuration:rotateDuration  angle:cocosAngle],
 					   [CCCallFunc actionWithTarget:self selector:@selector(finishMove)],
 					   nil]];
-
-	
     
+    
+    
+    
+    
+    
+    current_point = point;
 }
 
 
 -(void)update:(ccTime)deltaTime{
-	
     
- //   [bottle updateStateWithDeltaTime:deltaTime];
     
-    //[bottle testmethod];
+     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
-emitter.rotation = bottle.rotation;
-	//NSLog(@"%f point ",emitter.position.x);
+    float radius = 200.0;
     
-
+    float x = bottle.position.x+( radius * cos( (-1*(bottle.rotation-90.0f))*3.14/180));
+    
+    
+    
+    emitter.rotation = bottle.rotation;
+    
+   
+    if (hero.position.x-35 <= x && hero.position.x+35 >= x ) {
+        NSLog(@"right on point");
+        [hero updateNow:YES];
+        
+    }else 
+    {
+        [hero updateNow:NO];
+    }
+ 
 }
 
 
@@ -109,21 +125,29 @@ emitter.rotation = bottle.rotation;
         // [CCSprite spriteWithFile:@"bottle.png"] ;
 	
         bottle.position = ccp(bottle.contentSize.width/2 +120, winSize.height/2-100 );
-		emitter.position = bottle.position;
-		
+			
 emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
         [emitter setPositionType:kCCPositionTypeFree];//bottle.emitter = [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
+        
+        
+	emitter.position = bottle.position;
 		[self addChild:emitter];
 			//[self addChild:waterEmitter];
 		
         [self addChild:bottle];
-			hero = [CCSprite spriteWithFile:@"bottlecaphero.png"];
-		hero.position = ccp(bottle.contentSize.width/2 +70, winSize.height/2+100 );
+		hero = [[BottleCap alloc]init];
+     //   hero = [CCSprite spriteWithFile:@"bottlecaphero.png"];
+		
+        hero = [[BottleCap alloc] initWithFile:@"bottlecaphero.png"];
+        hero.position = ccp(bottle.contentSize.width/2 +70, winSize.height/2+100 );
 		[self addChild:hero];
-			// ask director the the window size
+        
+        
+        
+      		// ask director the the window size
 			//CGSize size = [[CCDirector sharedDirector] winSize];	
 		// position the label on the center of the screen
-		[self schedule:@selector(ChangeDirectionOfBottle) interval:2.0];
+		[self schedule:@selector(ChangeDirectionOfBottle) interval:5.0];
 		
 		id action = [CCMoveBy actionWithDuration:3 position:ccp(130,0)];
 		id ac = [CCRepeatForever actionWithAction:

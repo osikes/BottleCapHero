@@ -7,7 +7,8 @@
 //
 
 #import "CCSprite.h"
-
+#import "Constants.h"
+#import "CommonProtocols.h"
 @interface GameObject : CCSprite
 {
     
@@ -15,5 +16,8 @@
 -(CCAnimation*)loadPlistForAnimationWithName:(NSString*)animationName andClassName:(NSString*)className;
 
 -(CGRect)adjustedBoundingBox;
+
+-(void)changeState:(CharacterStates)newState; 
+
 
 @end

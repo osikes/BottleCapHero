@@ -7,7 +7,11 @@
 //
 
 #import "GameCharacter.h"
-
+#import "Constants.h"
+#import "cocos2d.h"
 @interface BottleCap : GameCharacter
+{}
 
+
+-(void) updateNow:(BOOL)val;
 @end

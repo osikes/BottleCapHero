@@ -42,6 +42,7 @@
 		0D37ECE71594217700D9458E /* b2PulleyJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D37ECC11594217700D9458E /* b2PulleyJoint.cpp */; };
 		0D37ECE81594217700D9458E /* b2RevoluteJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D37ECC31594217700D9458E /* b2RevoluteJoint.cpp */; };
 		0D37ECE91594217700D9458E /* b2WeldJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D37ECC51594217700D9458E /* b2WeldJoint.cpp */; };
+		0D4D3E6515943A2A003BFE38 /* bottlecapherowater.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4D3E6415943A2A003BFE38 /* bottlecapherowater.png */; };
 		0DC2F2861593E6EB00267ED6 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC2F2851593E6EA00267ED6 /* GameObject.m */; };
 		0DC2F28A1593E70500267ED6 /* GameCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC2F2891593E70500267ED6 /* GameCharacter.m */; };
 		0DC2F28D1593E71900267ED6 /* BottleCap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC2F28C1593E71900267ED6 /* BottleCap.m */; };
@@ -246,6 +247,8 @@
 		0D37ECC41594217700D9458E /* b2RevoluteJoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2RevoluteJoint.h; sourceTree = "<group>"; };
 		0D37ECC51594217700D9458E /* b2WeldJoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2WeldJoint.cpp; sourceTree = "<group>"; };
 		0D37ECC61594217700D9458E /* b2WeldJoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2WeldJoint.h; sourceTree = "<group>"; };
+		0D37ECEA159422DA00D9458E /* RaysCastCallBack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RaysCastCallBack.h; sourceTree = "<group>"; };
+		0D4D3E6415943A2A003BFE38 /* bottlecapherowater.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottlecapherowater.png; sourceTree = "<group>"; };
 		0DAE2DD81593EEC7000F26FF /* CommonProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonProtocols.h; sourceTree = "<group>"; };
 		0DC2F2841593E6EA00267ED6 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		0DC2F2851593E6EA00267ED6 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
@@ -718,6 +721,7 @@
 				5A9365E21592CC90000ABAEF /* BottleEnemy.mm */,
 				0DCC104515940467008C5A4E /* Fizz.h */,
 				0DCC104615940467008C5A4E /* Fizz.m */,
+				0D37ECEA159422DA00D9458E /* RaysCastCallBack.h */,
 			);
 			name = EnemyObjects;
 			sourceTree = "<group>";
@@ -1175,6 +1179,7 @@
 		5A9365D11592A52D000ABAEF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0D4D3E6415943A2A003BFE38 /* bottlecapherowater.png */,
 				5AD859A41592E4FA00E01DB7 /* bottle.png */,
 				5AFF23721592D5A000253F22 /* bottlecaphero.png */,
 				5A9365D81592B197000ABAEF /* Player2.png */,
@@ -1254,6 +1259,7 @@
 				5AFF23711592D44800253F22 /* water.plist in Resources */,
 				5AFF23731592D5A000253F22 /* bottlecaphero.png in Resources */,
 				5AD859A51592E4FA00E01DB7 /* bottle.png in Resources */,
+				0D4D3E6515943A2A003BFE38 /* bottlecapherowater.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 #import "GamePlayLayer.h"
 #import "CCScene.h"
 
-#import "GLES-Render.h"
+
 @interface GameScene : CCScene
 
 @end

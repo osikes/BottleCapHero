@@ -24,6 +24,10 @@
     return [self boundingBox];
 }
 
+-(void)changeState:(CharacterStates)newState {
+    //CCLOG(@"GameObject->changeState method should be overriden");
+}
+
 -(CCAnimation*)loadPlistForAnimationWithName:(NSString*)animationName andClassName:(NSString*)className{
     
   CCAnimation *animationToReturn = nil;

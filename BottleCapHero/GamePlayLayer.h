@@ -10,14 +10,15 @@
 #import "CCLayer.h"
 #import "BottleEnemy.h"
 #import "BottleCap.h"
-//#import "GLES-Render.h"
+#import "GLES-Render.h"
 @interface GamePlayLayer : CCLayer
 {
     	BottleEnemy *bottle;
 	CCParticleSystem *emitter;
 	BottleCap *hero;
 	CCParticleSystem *waterEmitter;
-    
+    CGPoint current_point;
+    float current_angle;
     
 }
 @end

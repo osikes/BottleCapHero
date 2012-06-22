@@ -10,8 +10,8 @@
 
 typedef enum
 {
-    kStateOnWater;
-    kStateSlippingOff;
-    kStateDead;
+    kStateOnWater,
+    kStateSlippingOff,
+    kStateDead
     
 } CharacterStates;
