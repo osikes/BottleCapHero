@@ -10,9 +10,11 @@
 
 #import "AppDelegate.h"
 #import "GameConfig.h"
-#import "HelloWorldLayer.h"
+#import "GLES-Render.h"
 #import "RootViewController.h"
-
+#import "GameScene.h"
+#import "Constants.h"
+#import "GameManager.h"
 @implementation AppDelegate
 
 @synthesize window;
@@ -114,7 +116,9 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+//    [[CCDirector sharedDirector] runWithScene:[GameScene node]];
+    [[GameManager sharedGameManager] runSceneWithID:kGameLevel1];
+	//[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
 }
 
 

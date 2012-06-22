@@ -1,17 +1,15 @@
 //
-//  HelloWorldLayer.m
+//  GamePlayLayer.m
 //  BottleCapHero
 //
-//  Created by Owen Sikes on 6/20/12.
-//  Copyright University of Alabama Athletics 2012. All rights reserved.
+//  Created by Owen Sikes on 6/21/12.
+//  Copyright (c) 2012 University of Alabama Athletics. All rights reserved.
 //
 
+#import "GamePlayLayer.h"
 
-// Import the interfaces
-#import "HelloWorldLayer.h"
+@implementation GamePlayLayer
 
-// HelloWorldLayer implementation
-@implementation HelloWorldLayer
 
 +(CCScene *) scene
 {
@@ -19,7 +17,7 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	HelloWorldLayer *layer = [HelloWorldLayer node];
+	GamePlayLayer *layer = [GamePlayLayer node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -27,7 +25,6 @@
 	// return the scene
 	return scene;
 }
-
 -(void)ChangeDirectionOfBottle
 {
 
@@ -57,15 +54,23 @@
 					   [CCRotateTo actionWithDuration:rotateDuration  angle:cocosAngle],
 					   [CCCallFunc actionWithTarget:self selector:@selector(finishMove)],
 					   nil]];
+
 	
-		 
+    
 }
 
 
 -(void)update:(ccTime)deltaTime{
 	
-	emitter.rotation = bottle.rotation;
-	
+    
+ //   [bottle updateStateWithDeltaTime:deltaTime];
+    
+    //[bottle testmethod];
+    
+emitter.rotation = bottle.rotation;
+	//NSLog(@"%f point ",emitter.position.x);
+    
+
 }
 
 
@@ -94,17 +99,25 @@
 			// and as close to the left side edge as we can get
 			// Remember that position is based on the anchor point, and by default the anchor
 			// point is the middle of the object.
-		 bottle = [CCSprite spriteWithFile:@"bottle.png"] ;
-		bottle.position = ccp(bottle.contentSize.width/2 +120, winSize.height/2-100 );
-		
-		emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
+    //    bottle =[[BottleEnemy alloc]initWithSpriteFrameNode:@"bottle.png"];
+      
+        
+        bottle = [CCSprite spriteWithFile:@"bottle.png"]; 
+        
+        
+         //   [bottle setTexture :[[CCTextureCache sharedTextureCache] addImage:@"bottle.png"]];	//	emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
+        // [CCSprite spriteWithFile:@"bottle.png"] ;
+	
+        bottle.position = ccp(bottle.contentSize.width/2 +120, winSize.height/2-100 );
 		emitter.position = bottle.position;
-		[emitter setPositionType:kCCPositionTypeFree];//bottle.emitter = [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
+		
+emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
+        [emitter setPositionType:kCCPositionTypeFree];//bottle.emitter = [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
 		[self addChild:emitter];
 			//[self addChild:waterEmitter];
-		[self addChild:bottle];
 		
-		hero = [CCSprite spriteWithFile:@"bottlecaphero.png"];
+        [self addChild:bottle];
+			hero = [CCSprite spriteWithFile:@"bottlecaphero.png"];
 		hero.position = ccp(bottle.contentSize.width/2 +70, winSize.height/2+100 );
 		[self addChild:hero];
 			// ask director the the window size
@@ -135,7 +148,7 @@
 		// grab the player sprite from that layer using it's tag
     float destX, destY;
     BOOL shouldMove = NO;
-	NSLog(@"accelerations %f",acceleration.x);
+//	NSLog(@"accelerations %f",acceleration.x);
     float currentX = hero.position.x;
     float currentY = hero.position.y;
 	float kPlayerSpeed =35.0f;
