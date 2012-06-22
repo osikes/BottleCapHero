@@ -66,30 +66,93 @@
 
 -(void)update:(ccTime)deltaTime{
     
+       CCArray *listOfGameObjects = 
+    [sceneSpriteBatchNode children];                     // 1
+    for (GameCharacter *tempChar in listOfGameObjects) {         // 2
+        [tempChar updateStateWithDeltaTime:deltaTime andListOfGameObjects:listOfGameObjects];                         // 3
+    }
     
-     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    
-    float radius = 200.0;
+	
+	float radius = sqrtf( pow((hero.position.x - bottle.position.x),2) + pow((hero.position.y-bottle.position.y),2));
     
     float x = bottle.position.x+( radius * cos( (-1*(bottle.rotation-90.0f))*3.14/180));
     
-    
-    
     emitter.rotation = bottle.rotation;
-    
-   
-    if (hero.position.x-35 <= x && hero.position.x+35 >= x ) {
-        NSLog(@"right on point");
+    if (hero.position.x-45 <= x && hero.position.x+45 >= x ) {
+			//NSLog(@"right on point");
         [hero updateNow:YES];
-        
     }else 
     {
-        [hero updateNow:NO];
+			//NSLog(@"not on point");
+		[hero updateNow:NO];
     }
- 
+	if(hero.characterState == kStateOnWater)
+	{ 
+		hero.rotation = bottle.rotation;
+		
+		millisecondsBetweenTouch = millisecondsBetweenTouch + deltaTime;
+		
+		if(touchoccured)
+		{
+		
+			touchoccured = NO;
+			if(millisecondsBetweenTouch*1000 < 1500)
+			{
+				//handle moving down y-axis
+				
+				CGPoint newpoint = [self ComputerCoordinate:hero.position :bottle.rotation:-5];
+				CCAction *action = [CCMoveTo actionWithDuration:.2 position: CGPointMake(newpoint.x, newpoint.y)];
+				//[action setTag:1111101];
+				if(hero.characterState == kStateOnWater)
+					[hero runAction:action];
+			
+			}else {
+			
+				if(deltaTime*1000 > 200)
+				[self MoveCapUp];	
+			}
+		 
+			millisecondsBetweenTouch = 0;
+		
+		}
+		else {
+				//	NSLog(@"delta %f",millisecondsBetweenTouch*1000);
+			if(millisecondsBetweenTouch*1000 > 200)
+			{millisecondsBetweenTouch = 0;[self MoveCapUp];} 
+		}
+	
+	}
+	}
+
+
+-(CGPoint) ComputerCoordinate:(CGPoint)point:(float)angle:(float)distance
+{
+	CGPoint finalpoint;
+
+float x = hero.position.x+( distance * cos( (-1*(bottle.rotation-90.0f))*3.14/180));
+
+ float y = hero.position.y+( distance * sin( (-1*(bottle.rotation-90.0f))*3.14/180));
+
+	
+	finalpoint.x = x;
+	finalpoint.y = y;
+   	return finalpoint;
 }
 
+-(void)MoveCapUp
+{
+	CGSize wins = [[CCDirector sharedDirector] winSize];
+	CGPoint newpoint = [self ComputerCoordinate:hero.position :bottle.rotation :6];	
+	CCAction *actionup = [CCMoveTo actionWithDuration:.3 position: CGPointMake(newpoint.x, newpoint.y)];// CGPointMake(hero.position.x, hero.position.y+5)];
+	
+		if(hero.position.y < wins.height-60)
+		[hero runAction:actionup];	
+}
 
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	touchoccured = YES;
+}
 -(void) finishMove
 {
 
@@ -101,28 +164,24 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
-		
+	
+		PlayerAngle = 0;
+		millisecondsBetweenTouch = 0;
 			// create and initialize a Label
 			// Enable touch events
-		self.isTouchEnabled = YES;
-		
-			// Initialize arrays
+	
+		touchoccured = NO;
 		
 			// Get the dimensions of the window for calculation purposes
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		
-			// Add the player to the middle of the screen along the y-axis, 
-			// and as close to the left side edge as we can get
-			// Remember that position is based on the anchor point, and by default the anchor
-			// point is the middle of the object.
-    //    bottle =[[BottleEnemy alloc]initWithSpriteFrameNode:@"bottle.png"];
-      
-        
+		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"atlas.plist"];
+		sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"atlas.png"];
+		[self addChild:sceneSpriteBatchNode z:0];
+		
         bottle = [CCSprite spriteWithFile:@"bottle.png"]; 
         
         
-         //   [bottle setTexture :[[CCTextureCache sharedTextureCache] addImage:@"bottle.png"]];	//	emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
-        // [CCSprite spriteWithFile:@"bottle.png"] ;
 	
         bottle.position = ccp(bottle.contentSize.width/2 +120, winSize.height/2-100 );
 			
@@ -132,29 +191,20 @@ emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
         
 	emitter.position = bottle.position;
 		[self addChild:emitter];
-			//[self addChild:waterEmitter];
 		
         [self addChild:bottle];
 		hero = [[BottleCap alloc]init];
-     //   hero = [CCSprite spriteWithFile:@"bottlecaphero.png"];
 		
-        hero = [[BottleCap alloc] initWithFile:@"bottlecaphero.png"];
+        hero = [[BottleCap alloc] initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bottlecaphero.png"]]; // initWithFile:@"bottlecaphero.png"];
         hero.position = ccp(bottle.contentSize.width/2 +70, winSize.height/2+100 );
-		[self addChild:hero];
-        
+		[sceneSpriteBatchNode addChild:hero z:kBottleCapHeroSpriteZValue tag:kBottleCapHeroSpriteTagValue];
         
         
       		// ask director the the window size
-			//CGSize size = [[CCDirector sharedDirector] winSize];	
 		// position the label on the center of the screen
 		[self schedule:@selector(ChangeDirectionOfBottle) interval:5.0];
 		
-		id action = [CCMoveBy actionWithDuration:3 position:ccp(130,0)];
-		id ac = [CCRepeatForever actionWithAction:
-				 [CCSequence actions: [ action copy] , [action reverse],nil]];
 		
-			//	[hero runAction:ac];
-			//	[hero RunAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:nil restoreOriginalFrame:NO]]];		
 		[self scheduleUpdate];
 		
 		self.isAccelerometerEnabled = YES;
@@ -163,8 +213,10 @@ emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
 		
 		[[UIAccelerometer sharedAccelerometer] setUpdateInterval:1/60];
 	}
+	self.isTouchEnabled = YES;
 	return self;
 }
+
 
 
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
@@ -175,12 +227,19 @@ emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
 //	NSLog(@"accelerations %f",acceleration.x);
     float currentX = hero.position.x;
     float currentY = hero.position.y;
+		//computer radius
+	
+	
+		//	NSLog(@"radius %f",radius);
 	float kPlayerSpeed =35.0f;
-     if(acceleration.x > 0.25) {  // tilting the device to the right
-        destX = currentX + (acceleration.x * kPlayerSpeed);
+     if(acceleration.x > 0.15) {  // tilting the device to the right
+        
+		 
+		 destX = currentX + (acceleration.x * kPlayerSpeed);
 			 //    destY = currentY + (acceleration.x * kPlayerSpeed);
         shouldMove = YES;
-    } else if (acceleration.x < -0.25) {  // tilting the device to the left
+    } else if (acceleration.x < -0.15) {  // tilting the device to the left
+		
         destX = currentX - (-1*acceleration.x * kPlayerSpeed);
 			//	NSLog(@"tilting left");
 			//destY = currentY + (acceleration.x * kPlayerSpeed);
@@ -197,9 +256,18 @@ emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
         {}
 		else {
 				//		NSLog(@" current x %f destx %f",currentX,destX);
-            CCAction *action = [CCMoveTo actionWithDuration:.2 position: CGPointMake(destX, currentY)];
-				[action setTag:1111101];
-            [hero runAction:action];
+            
+			
+			
+				//	hero.rotation=bottle.rotation;
+			
+				CCAction *action = [CCMoveTo actionWithDuration:.2 position: CGPointMake(destX, currentY)];
+			
+					//	hero.rotation = (PlayerAngle);
+			
+			[action setTag:1111101];
+            
+				[hero runAction:action];
         }
     } else {
 			// should stop
@@ -207,6 +275,15 @@ emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
     }
 	
 }
+
+
+-(CGPoint) RotateAroundPt:(CGPoint) centerPt withAngle:(float) radAngle withRadius:(float) radius {
+	CGPoint newpoint;
+	newpoint.x = centerPt.x + cosf(radAngle) * radius;
+	newpoint.y = centerPt.y + sinf(radAngle) * radius;
+	return newpoint;
+}
+
 
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc

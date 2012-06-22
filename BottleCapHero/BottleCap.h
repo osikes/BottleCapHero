@@ -10,8 +10,13 @@
 #import "Constants.h"
 #import "cocos2d.h"
 @interface BottleCap : GameCharacter
-{}
+{
+	CCAnimation *balancingonwater;	
+	BOOL isSmiling;
+}
 
 
+@property (nonatomic,retain) CCAnimation *balancingonwater;
+	//@property (nonatomic,retain) CCAnimation delegate;
 -(void) updateNow:(BOOL)val;
 @end

@@ -19,6 +19,9 @@
 	CCParticleSystem *waterEmitter;
     CGPoint current_point;
     float current_angle;
-    
+	CCSpriteBatchNode *sceneSpriteBatchNode;
+	float millisecondsBetweenTouch;
+	BOOL touchoccured;
+	float PlayerAngle;
 }
 @end

@@ -17,6 +17,7 @@
         
         GamePlayLayer *layer = [GamePlayLayer node];
         [self addChild:layer z:5];
+	
     }
     return  self; 
     

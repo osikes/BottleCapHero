@@ -9,5 +9,5 @@
 #import "GameCharacter.h"
 
 @implementation GameCharacter
-
+@synthesize  characterState;
 @end

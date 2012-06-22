@@ -170,6 +170,10 @@
 		5AD859A51592E4FA00E01DB7 /* bottle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AD859A41592E4FA00E01DB7 /* bottle.png */; };
 		5AFF23711592D44800253F22 /* water.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5AFF23701592D44800253F22 /* water.plist */; };
 		5AFF23731592D5A000253F22 /* bottlecaphero.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFF23721592D5A000253F22 /* bottlecaphero.png */; };
+		5AFF2ABD1594C7CE00D26F4C /* BottleCap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5AFF2ABB1594C7CE00D26F4C /* BottleCap.plist */; };
+		5AFF2ABE1594C7CE00D26F4C /* BottleCap.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFF2ABC1594C7CE00D26F4C /* BottleCap.png */; };
+		5AFF2AC01594C9BA00D26F4C /* atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5AFF2ABF1594C9BA00D26F4C /* atlas.plist */; };
+		5AFF2AC21594C9C100D26F4C /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFF2AC11594C9C100D26F4C /* atlas.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -506,6 +510,10 @@
 		5AD859A41592E4FA00E01DB7 /* bottle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottle.png; sourceTree = "<group>"; };
 		5AFF23701592D44800253F22 /* water.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = water.plist; sourceTree = "<group>"; };
 		5AFF23721592D5A000253F22 /* bottlecaphero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottlecaphero.png; sourceTree = "<group>"; };
+		5AFF2ABB1594C7CE00D26F4C /* BottleCap.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BottleCap.plist; sourceTree = "<group>"; };
+		5AFF2ABC1594C7CE00D26F4C /* BottleCap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottleCap.png; sourceTree = "<group>"; };
+		5AFF2ABF1594C9BA00D26F4C /* atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = atlas.plist; sourceTree = "<group>"; };
+		5AFF2AC11594C9C100D26F4C /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -799,6 +807,7 @@
 		5A9364631592A464000ABAEF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5AFF2AA91594494200D26F4C /* TextureAtlases */,
 				5A9365D11592A52D000ABAEF /* Images */,
 				5A9364641592A464000ABAEF /* Default.png */,
 				5A9364661592A464000ABAEF /* fps_images.png */,
@@ -1179,6 +1188,7 @@
 		5A9365D11592A52D000ABAEF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5AFF2AC11594C9C100D26F4C /* atlas.png */,
 				0D4D3E6415943A2A003BFE38 /* bottlecapherowater.png */,
 				5AD859A41592E4FA00E01DB7 /* bottle.png */,
 				5AFF23721592D5A000253F22 /* bottlecaphero.png */,
@@ -1190,9 +1200,19 @@
 		5A9365DA1592BC36000ABAEF /* Plists */ = {
 			isa = PBXGroup;
 			children = (
+				5AFF2ABB1594C7CE00D26F4C /* BottleCap.plist */,
+				5AFF2ABC1594C7CE00D26F4C /* BottleCap.png */,
 				5AFF23701592D44800253F22 /* water.plist */,
 			);
 			name = Plists;
+			sourceTree = "<group>";
+		};
+		5AFF2AA91594494200D26F4C /* TextureAtlases */ = {
+			isa = PBXGroup;
+			children = (
+				5AFF2ABF1594C9BA00D26F4C /* atlas.plist */,
+			);
+			name = TextureAtlases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1260,6 +1280,10 @@
 				5AFF23731592D5A000253F22 /* bottlecaphero.png in Resources */,
 				5AD859A51592E4FA00E01DB7 /* bottle.png in Resources */,
 				0D4D3E6515943A2A003BFE38 /* bottlecapherowater.png in Resources */,
+				5AFF2ABD1594C7CE00D26F4C /* BottleCap.plist in Resources */,
+				5AFF2ABE1594C7CE00D26F4C /* BottleCap.png in Resources */,
+				5AFF2AC01594C9BA00D26F4C /* atlas.plist in Resources */,
+				5AFF2AC21594C9C100D26F4C /* atlas.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

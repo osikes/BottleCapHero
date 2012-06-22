@@ -6,6 +6,11 @@
 //  Copyright (c) 2012 University of Alabama Athletics. All rights reserved.
 //
 
+#define kBottleCapHeroSpriteZValue 500
+#define kBottleCapHeroSpriteTagValue 501
+#define kBottleSpriteZvalue 499
+#define kCapOnWaterTagValue 1000
+
 typedef enum{
     
     kNoSceneUninitialized = 0,

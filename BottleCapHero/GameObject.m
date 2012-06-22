@@ -90,4 +90,8 @@
     
 }
 
+-(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray*)listOfGameObjects
+{
+	
+}
 @end
