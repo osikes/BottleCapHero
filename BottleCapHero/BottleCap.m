@@ -17,6 +17,7 @@
 {
     if(self != [super init])
     {
+		self.gameObjectType = kBottleCapType;
         [self initAnimations];isSmiling = NO;
     }
     [self initAnimations];
@@ -46,16 +47,44 @@
 
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime andListOfGameObjects:(CCArray*)listOfGameObjects
 {
-		//	    CGRect myBoundingBox = [self adjustedBoundingBox];
+		CGRect myBoundingBox = [self adjustedBoundingBox];
     for (GameCharacter *character in listOfGameObjects) {
         // This is Ole the Viking himself
         // No need to check collision with one's self
         if ([character tag] == kBottleCapHeroSpriteTagValue)//this is self 
             continue;
+	
+		if([character tag] == kBottleSpriteTagValue )
+		{
+			
+				//inside the only bottle that should be on screen
+			
+		}
+		
+		
+		if(CGRectIntersectsRect(myBoundingBox, character.boundingBox))
+		{
+		
+			if(character.gameObjectType == kBottleOpenerType){
+				
+					//than we need to acount for punishment of bottleCap hitting this
+				
+			}
+				
+		
+		}
+	
+	
 	}
 	
 	 
 	
+}
+
+
+
+-(CGRect)adjustedBoundingBox{
+	return [self boundingBox];
 }
 
 -(void)changeState:(CharacterStates)newState

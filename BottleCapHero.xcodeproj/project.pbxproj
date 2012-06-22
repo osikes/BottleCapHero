@@ -167,13 +167,14 @@
 		5A9365B91592A466000ABAEF /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9365B81592A466000ABAEF /* RootViewController.m */; };
 		5A9365D91592B197000ABAEF /* Player2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A9365D81592B197000ABAEF /* Player2.png */; };
 		5A9365E31592CC90000ABAEF /* BottleEnemy.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A9365E21592CC90000ABAEF /* BottleEnemy.mm */; };
+		5AA6069E159525E200CC0FDC /* BottleOpener.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6069D159525E200CC0FDC /* BottleOpener.m */; };
+		5AA606A0159527B200CC0FDC /* atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5AA6069F159527B200CC0FDC /* atlas.plist */; };
+		5AA606A2159527BB00CC0FDC /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AA606A1159527BB00CC0FDC /* atlas.png */; };
 		5AD859A51592E4FA00E01DB7 /* bottle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AD859A41592E4FA00E01DB7 /* bottle.png */; };
 		5AFF23711592D44800253F22 /* water.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5AFF23701592D44800253F22 /* water.plist */; };
 		5AFF23731592D5A000253F22 /* bottlecaphero.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFF23721592D5A000253F22 /* bottlecaphero.png */; };
 		5AFF2ABD1594C7CE00D26F4C /* BottleCap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5AFF2ABB1594C7CE00D26F4C /* BottleCap.plist */; };
 		5AFF2ABE1594C7CE00D26F4C /* BottleCap.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFF2ABC1594C7CE00D26F4C /* BottleCap.png */; };
-		5AFF2AC01594C9BA00D26F4C /* atlas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5AFF2ABF1594C9BA00D26F4C /* atlas.plist */; };
-		5AFF2AC21594C9C100D26F4C /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AFF2AC11594C9C100D26F4C /* atlas.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -251,7 +252,6 @@
 		0D37ECC41594217700D9458E /* b2RevoluteJoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2RevoluteJoint.h; sourceTree = "<group>"; };
 		0D37ECC51594217700D9458E /* b2WeldJoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2WeldJoint.cpp; sourceTree = "<group>"; };
 		0D37ECC61594217700D9458E /* b2WeldJoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2WeldJoint.h; sourceTree = "<group>"; };
-		0D37ECEA159422DA00D9458E /* RaysCastCallBack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RaysCastCallBack.h; sourceTree = "<group>"; };
 		0D4D3E6415943A2A003BFE38 /* bottlecapherowater.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottlecapherowater.png; sourceTree = "<group>"; };
 		0DAE2DD81593EEC7000F26FF /* CommonProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonProtocols.h; sourceTree = "<group>"; };
 		0DC2F2841593E6EA00267ED6 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
@@ -507,13 +507,15 @@
 		5A9365D81592B197000ABAEF /* Player2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player2.png; sourceTree = "<group>"; };
 		5A9365E11592CC90000ABAEF /* BottleEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottleEnemy.h; sourceTree = "<group>"; };
 		5A9365E21592CC90000ABAEF /* BottleEnemy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BottleEnemy.mm; sourceTree = "<group>"; };
+		5AA6069C159525E200CC0FDC /* BottleOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottleOpener.h; sourceTree = "<group>"; };
+		5AA6069D159525E200CC0FDC /* BottleOpener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottleOpener.m; sourceTree = "<group>"; };
+		5AA6069F159527B200CC0FDC /* atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = atlas.plist; sourceTree = "<group>"; };
+		5AA606A1159527BB00CC0FDC /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
 		5AD859A41592E4FA00E01DB7 /* bottle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottle.png; sourceTree = "<group>"; };
 		5AFF23701592D44800253F22 /* water.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = water.plist; sourceTree = "<group>"; };
 		5AFF23721592D5A000253F22 /* bottlecaphero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottlecaphero.png; sourceTree = "<group>"; };
 		5AFF2ABB1594C7CE00D26F4C /* BottleCap.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BottleCap.plist; sourceTree = "<group>"; };
 		5AFF2ABC1594C7CE00D26F4C /* BottleCap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottleCap.png; sourceTree = "<group>"; };
-		5AFF2ABF1594C9BA00D26F4C /* atlas.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = atlas.plist; sourceTree = "<group>"; };
-		5AFF2AC11594C9C100D26F4C /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -725,11 +727,12 @@
 		0DC2F29E1593EC4D00267ED6 /* EnemyObjects */ = {
 			isa = PBXGroup;
 			children = (
+				5AA6069C159525E200CC0FDC /* BottleOpener.h */,
+				5AA6069D159525E200CC0FDC /* BottleOpener.m */,
 				5A9365E11592CC90000ABAEF /* BottleEnemy.h */,
 				5A9365E21592CC90000ABAEF /* BottleEnemy.mm */,
 				0DCC104515940467008C5A4E /* Fizz.h */,
 				0DCC104615940467008C5A4E /* Fizz.m */,
-				0D37ECEA159422DA00D9458E /* RaysCastCallBack.h */,
 			);
 			name = EnemyObjects;
 			sourceTree = "<group>";
@@ -1138,6 +1141,7 @@
 		5A9365C31592A474000ABAEF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5AA6069B1595259D00CC0FDC /* PowerUps */,
 				0DE570D21594192C008C1CD0 /* Box2D */,
 				0DCC10441593FEF0008C5A4E /* Game Items */,
 				0DAE2DD71593EEA7000F26FF /* Constants */,
@@ -1188,7 +1192,7 @@
 		5A9365D11592A52D000ABAEF /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				5AFF2AC11594C9C100D26F4C /* atlas.png */,
+				5AA606A1159527BB00CC0FDC /* atlas.png */,
 				0D4D3E6415943A2A003BFE38 /* bottlecapherowater.png */,
 				5AD859A41592E4FA00E01DB7 /* bottle.png */,
 				5AFF23721592D5A000253F22 /* bottlecaphero.png */,
@@ -1207,10 +1211,17 @@
 			name = Plists;
 			sourceTree = "<group>";
 		};
+		5AA6069B1595259D00CC0FDC /* PowerUps */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = PowerUps;
+			sourceTree = "<group>";
+		};
 		5AFF2AA91594494200D26F4C /* TextureAtlases */ = {
 			isa = PBXGroup;
 			children = (
-				5AFF2ABF1594C9BA00D26F4C /* atlas.plist */,
+				5AA6069F159527B200CC0FDC /* atlas.plist */,
 			);
 			name = TextureAtlases;
 			sourceTree = "<group>";
@@ -1282,8 +1293,8 @@
 				0D4D3E6515943A2A003BFE38 /* bottlecapherowater.png in Resources */,
 				5AFF2ABD1594C7CE00D26F4C /* BottleCap.plist in Resources */,
 				5AFF2ABE1594C7CE00D26F4C /* BottleCap.png in Resources */,
-				5AFF2AC01594C9BA00D26F4C /* atlas.plist in Resources */,
-				5AFF2AC21594C9C100D26F4C /* atlas.png in Resources */,
+				5AA606A0159527B200CC0FDC /* atlas.plist in Resources */,
+				5AA606A2159527BB00CC0FDC /* atlas.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1435,6 +1446,7 @@
 				0D37ECE71594217700D9458E /* b2PulleyJoint.cpp in Sources */,
 				0D37ECE81594217700D9458E /* b2RevoluteJoint.cpp in Sources */,
 				0D37ECE91594217700D9458E /* b2WeldJoint.cpp in Sources */,
+				5AA6069E159525E200CC0FDC /* BottleOpener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

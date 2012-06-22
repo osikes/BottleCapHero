@@ -15,3 +15,20 @@ typedef enum
     kStateDead,
 	kStateIdle
 } CharacterStates;
+
+
+typedef enum
+{
+	kPowerUpTypeTeleport,
+	kPowerUpTypeFaster,
+	kBottleCapType,
+	kBottleType,
+	kBottleOpenerType
+} GameObjectType;
+
+
+@protocol GameplayLayerDelegate
+-(void)createObjectOfType:(GameObjectType)objectType 
+               atLocation:(CGPoint)spawnLocation 
+               withZValue:(int)ZValue;
+@end

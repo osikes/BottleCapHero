@@ -20,7 +20,7 @@
             <key>bottlecaphero.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{58,74},{70,36}}</string>
+                <string>{{2,337},{70,36}}</string>
                 <key>offset</key>
                 <string>{0,5}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>bottlecaphero1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{58,2},{70,36}}</string>
+                <string>{{2,265},{70,36}}</string>
                 <key>offset</key>
                 <string>{0,5}</string>
                 <key>rotated</key>
@@ -46,11 +46,11 @@
             <key>bottlecaphero2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,196},{70,36}}</string>
+                <string>{{58,74},{70,36}}</string>
                 <key>offset</key>
                 <string>{0,5}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,12},{70,36}}</string>
                 <key>sourceSize</key>
@@ -59,15 +59,28 @@
             <key>bottlecaphero3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,158},{70,36}}</string>
+                <string>{{58,2},{70,36}}</string>
                 <key>offset</key>
                 <string>{0,5}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,12},{70,36}}</string>
                 <key>sourceSize</key>
                 <string>{70,70}</string>
+            </dict>
+            <key>bottleopenertrans.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,158},{78,105}}</string>
+                <key>offset</key>
+                <string>{2,-2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{19,4},{78,105}}</string>
+                <key>sourceSize</key>
+                <string>{112,109}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -77,9 +90,9 @@
             <key>realTextureFileName</key>
             <string>atlas.png</string>
             <key>size</key>
-            <string>{128,256}</string>
+            <string>{2048,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e76245218f20004d270db647ac63abe0$</string>
+            <string>$TexturePacker:SmartUpdate:2a8173b71220e8a63c312518b6bcef23$</string>
             <key>textureFileName</key>
             <string>atlas.png</string>
         </dict>

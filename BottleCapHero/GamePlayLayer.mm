@@ -7,7 +7,8 @@
 //
 
 #import "GamePlayLayer.h"
-#import "RaysCastCallBack.h"
+#import "BottleOpener.h"
+
 @implementation GamePlayLayer
 
 
@@ -179,20 +180,22 @@ float x = hero.position.x+( distance * cos( (-1*(bottle.rotation-90.0f))*3.14/18
 		sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"atlas.png"];
 		[self addChild:sceneSpriteBatchNode z:0];
 		
-        bottle = [CCSprite spriteWithFile:@"bottle.png"]; 
+		
+		
+        bottle = [[BottleEnemy alloc] initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bottle.png"]];
+		
         
-        
-	
         bottle.position = ccp(bottle.contentSize.width/2 +120, winSize.height/2-100 );
 			
 emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
         [emitter setPositionType:kCCPositionTypeFree];//bottle.emitter = [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
         
         
-	emitter.position = bottle.position;
-		[self addChild:emitter];
+		emitter.position = CGPointMake(bottle.position.x-10, bottle.position.y+25);
+
+		[self addChild:emitter z:5];
+		[sceneSpriteBatchNode addChild:bottle z:kBottleSpriteZvalue tag:kBottleSpriteTagValue];
 		
-        [self addChild:bottle];
 		hero = [[BottleCap alloc]init];
 		
         hero = [[BottleCap alloc] initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bottlecaphero.png"]]; // initWithFile:@"bottlecaphero.png"];
@@ -218,6 +221,23 @@ emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
 }
 
 
+-(void)createObjectOfType:(GameObjectType)objectType 
+               withHealth:(int)initialHealth
+               atLocation:(CGPoint)spawnLocation 
+               withZValue:(int)ZValue 
+{
+
+	if(objectType == kPowerUpTypeTeleport)
+	{
+		
+	}
+	if(objectType == kBottleOpenerType){
+		
+		 BottleOpener *bottleOpener = [[BottleOpener alloc] initWithSpriteFrameName:@"bottleopenertrans.png"];
+        [bottleOpener setPosition:spawnLocation];
+        [sceneSpriteBatchNode addChild:bottleOpener z:ZValue];
+	}
+}
 
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
 		// use the running scene to grab the appropriate game layer by it's tag

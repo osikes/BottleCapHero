@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 
 @implementation GameObject
-
+@synthesize  gameObjectType;
 -(id)init{
     
     if(( self= [super init])){
