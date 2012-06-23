@@ -20,7 +20,7 @@
             <key>bottlecaphero.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,337},{70,36}}</string>
+                <string>{{2,409},{70,36}}</string>
                 <key>offset</key>
                 <string>{0,5}</string>
                 <key>rotated</key>
@@ -82,6 +82,58 @@
                 <key>sourceSize</key>
                 <string>{112,109}</string>
             </dict>
+            <key>yellowcoin.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{40,265},{35,41}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{5,2},{35,41}}</string>
+                <key>sourceSize</key>
+                <string>{45,45}</string>
+            </dict>
+            <key>yellowcoin1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{33,481},{35,41}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{5,2},{35,41}}</string>
+                <key>sourceSize</key>
+                <string>{45,45}</string>
+            </dict>
+            <key>yellowcoin2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,526},{35,41}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{4,2},{35,41}}</string>
+                <key>sourceSize</key>
+                <string>{45,45}</string>
+            </dict>
+            <key>yellowcoin3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,481},{29,43}}</string>
+                <key>offset</key>
+                <string>{-4,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{4,0},{29,43}}</string>
+                <key>sourceSize</key>
+                <string>{45,45}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -92,7 +144,7 @@
             <key>size</key>
             <string>{2048,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:2a8173b71220e8a63c312518b6bcef23$</string>
+            <string>$TexturePacker:SmartUpdate:2679e32bf1ebd0f692a107a40507d602$</string>
             <key>textureFileName</key>
             <string>atlas.png</string>
         </dict>

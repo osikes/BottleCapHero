@@ -10,10 +10,13 @@
 
 typedef enum
 {
+	kStateSpawning,
     kStateOnWater,
     kStateSlippingOff,
     kStateDead,
-	kStateIdle
+	kStateIdle,
+	kStateMovingDown,
+	kStateMovingUp
 } CharacterStates;
 
 
@@ -23,7 +26,8 @@ typedef enum
 	kPowerUpTypeFaster,
 	kBottleCapType,
 	kBottleType,
-	kBottleOpenerType
+	kBottleOpenerType,
+	kTreasureCoinType,
 } GameObjectType;
 
 

@@ -8,7 +8,7 @@
 
 #import "GamePlayLayer.h"
 #import "BottleOpener.h"
-
+#import "Coin.h"
 @implementation GamePlayLayer
 
 
@@ -31,8 +31,11 @@
 
 		//get random x coordinate
 	
-	CGPoint point =CGPointMake(arc4random()%320, 300);
+	CGPoint point =CGPointMake(arc4random()%330, 300);
     
+	if(point.x < 50) point.x = 50;
+	
+	
     CGPoint shootVector = ccpSub(point, bottle.position);
     CGFloat shootAngle = ccpToAngle(shootVector);
     CGFloat cocosAngle = CC_RADIANS_TO_DEGREES(-1* shootAngle)+90;//account for orienation
@@ -41,7 +44,7 @@
 	
 		//NSLog(@"angle %f",shootAngle);
 	point = [[CCDirector sharedDirector] convertToGL:point];
-    
+	
 	CGFloat rotateDiff = (cocosAngle - curAngle);    
     if (rotateDiff > 180)
 		rotateDiff -= 360;
@@ -64,29 +67,32 @@
     current_point = point;
 }
 
+-(void)CheckForGameOver
+{
+	if(hero != nil)
+	if(hero.characterState == kStateDead){
+		
+	}
+	if(bottle != nil)
+	if(bottle.characterState == kStateDead){
+		NSLog(@"Victory");
+	}
+	
+}
 
 -(void)update:(ccTime)deltaTime{
     
-       CCArray *listOfGameObjects = 
-    [sceneSpriteBatchNode children];                     // 1
-    for (GameCharacter *tempChar in listOfGameObjects) {         // 2
-        [tempChar updateStateWithDeltaTime:deltaTime andListOfGameObjects:listOfGameObjects];                         // 3
-    }
-    
 	
-	float radius = sqrtf( pow((hero.position.x - bottle.position.x),2) + pow((hero.position.y-bottle.position.y),2));
-    
-    float x = bottle.position.x+( radius * cos( (-1*(bottle.rotation-90.0f))*3.14/180));
-    
-    emitter.rotation = bottle.rotation;
-    if (hero.position.x-45 <= x && hero.position.x+45 >= x ) {
-			//NSLog(@"right on point");
-        [hero updateNow:YES];
-    }else 
-    {
-			//NSLog(@"not on point");
-		[hero updateNow:NO];
+	
+	CCArray *listOfGameObjects = 
+    [sceneSpriteBatchNode children];                     
+    for (GameCharacter *tempChar in listOfGameObjects) {
+		[tempChar updateStateWithDeltaTime:deltaTime andListOfGameObjects:listOfGameObjects];                       
     }
+    
+	[self DetermineIfCapInterceptsFizz]; 
+
+	
 	if(hero.characterState == kStateOnWater)
 	{ 
 		hero.rotation = bottle.rotation;
@@ -100,17 +106,13 @@
 			if(millisecondsBetweenTouch*1000 < 1500)
 			{
 				//handle moving down y-axis
-				
-				CGPoint newpoint = [self ComputerCoordinate:hero.position :bottle.rotation:-5];
-				CCAction *action = [CCMoveTo actionWithDuration:.2 position: CGPointMake(newpoint.x, newpoint.y)];
-				//[action setTag:1111101];
 				if(hero.characterState == kStateOnWater)
-					[hero runAction:action];
+					[hero changeState:kStateMovingDown];
 			
 			}else {
 			
 				if(deltaTime*1000 > 200)
-				[self MoveCapUp];	
+					[hero changeState:kStateMovingUp];
 			}
 		 
 			millisecondsBetweenTouch = 0;
@@ -119,20 +121,40 @@
 		else {
 				//	NSLog(@"delta %f",millisecondsBetweenTouch*1000);
 			if(millisecondsBetweenTouch*1000 > 200)
-			{millisecondsBetweenTouch = 0;[self MoveCapUp];} 
+			{millisecondsBetweenTouch = 0;[hero changeState:kStateMovingUp];} 
 		}
 	
 	}
-	}
+		[self CheckForGameOver];
+}
+
+
+-(void)DetermineIfCapInterceptsFizz
+{
+	
+		//get radius by computing distance from bottle, to hero point 
+	float radius = sqrtf( pow((hero.position.x - bottle.position.x),2) + pow((hero.position.y-bottle.position.y),2));
+		//computer appropitate x to check to determine if hero is in way of stream
+	
+    float x = bottle.position.x+( radius * cos( (-1*(bottle.rotation-90.0f))*3.14/180));
+    
+    emitter.rotation = bottle.rotation;
+	
+    if (hero.position.x-45 <= x && hero.position.x+45 >= x ) 
+        [hero changeState:kStateOnWater]; 
+
+	else 
+		[hero changeState:kStateIdle]; //after checking, the Cap is still not in the vector  of the Fizz, meaning, no need to push up or down on the item
+}
 
 
 -(CGPoint) ComputerCoordinate:(CGPoint)point:(float)angle:(float)distance
 {
 	CGPoint finalpoint;
 
-float x = hero.position.x+( distance * cos( (-1*(bottle.rotation-90.0f))*3.14/180));
+	float x = hero.position.x+( distance * cos( (-1*(bottle.rotation-90.0f))*3.14/180));
 
- float y = hero.position.y+( distance * sin( (-1*(bottle.rotation-90.0f))*3.14/180));
+	float y = hero.position.y+( distance * sin( (-1*(bottle.rotation-90.0f))*3.14/180));
 
 	
 	finalpoint.x = x;
@@ -162,6 +184,7 @@ float x = hero.position.x+( distance * cos( (-1*(bottle.rotation-90.0f))*3.14/18
 // on "init" you need to initialize your instance
 -(id) init
 {
+	
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
@@ -176,11 +199,7 @@ float x = hero.position.x+( distance * cos( (-1*(bottle.rotation-90.0f))*3.14/18
 			// Get the dimensions of the window for calculation purposes
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		
-		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"atlas.plist"];
-		sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"atlas.png"];
-		[self addChild:sceneSpriteBatchNode z:0];
-		
-		
+		[self LoadAtlas];
 		
         bottle = [[BottleEnemy alloc] initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bottle.png"]];
 		
@@ -190,9 +209,7 @@ float x = hero.position.x+( distance * cos( (-1*(bottle.rotation-90.0f))*3.14/18
 emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
         [emitter setPositionType:kCCPositionTypeFree];//bottle.emitter = [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
         
-        
-		emitter.position = CGPointMake(bottle.position.x-10, bottle.position.y+25);
-
+		
 		[self addChild:emitter z:5];
 		[sceneSpriteBatchNode addChild:bottle z:kBottleSpriteZvalue tag:kBottleSpriteTagValue];
 		
@@ -201,8 +218,13 @@ emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
         hero = [[BottleCap alloc] initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bottlecaphero.png"]]; // initWithFile:@"bottlecaphero.png"];
         hero.position = ccp(bottle.contentSize.width/2 +70, winSize.height/2+100 );
 		[sceneSpriteBatchNode addChild:hero z:kBottleCapHeroSpriteZValue tag:kBottleCapHeroSpriteTagValue];
+       
+		
+		[self createObjectOfType:kBottleOpenerType  atLocation:CGPointMake(hero.position.x, hero.position.y-70) withZValue:10];
         
-        
+			//add coins
+		[self LoadRandomCoins];
+	
       		// ask director the the window size
 		// position the label on the center of the screen
 		[self schedule:@selector(ChangeDirectionOfBottle) interval:5.0];
@@ -220,9 +242,59 @@ emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
 	return self;
 }
 
+-(void)LoadAtlas
+{
+		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"atlas.plist"];
+		sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"atlas.png"];
+		[self addChild:sceneSpriteBatchNode z:0];
+}
 
+
+-(void) LoadRandomCoins
+{
+	
+	for (int i = 0; i < 1; i++) {
+		
+	[self createObjectOfType:kTreasureCoinType atLocation:CGPointMake(arc4random()%300+45, arc4random()%400+100) withZValue:10];
+	}
+}
+
+-(void) drawBoundingBox:(CGRect) rect
+{
+	
+
+CGPoint vertices[4]={
+        ccp(rect.origin.x,rect.origin.y),
+        ccp(rect.origin.x+rect.size.width,rect.origin.y),
+        ccp(rect.origin.x+rect.size.width,rect.origin.y+rect.size.height),
+        ccp(rect.origin.x,rect.origin.y+rect.size.height),
+    };
+    ccDrawPoly(vertices, 4, YES);}
+
+-(void) draw
+{
+	 glDisable(GL_TEXTURE_2D);
+    glDisableClientState(GL_COLOR_ARRAY);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+   // _world->DrawDebugData();
+
+    glColor4f(1.0, 0, 0, 1.0);
+    glLineWidth(1.0f);
+
+  for (GameCharacter *tempChar in  [sceneSpriteBatchNode children]) {         // 2
+	  [self drawBoundingBox:tempChar.adjustedBoundingBox]; 
+  }
+	 
+    glEnable(GL_TEXTURE_2D);
+    glEnableClientState(GL_COLOR_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+    [super draw];
+
+}
 -(void)createObjectOfType:(GameObjectType)objectType 
-               withHealth:(int)initialHealth
+             
                atLocation:(CGPoint)spawnLocation 
                withZValue:(int)ZValue 
 {
@@ -236,6 +308,11 @@ emitter =  [ARCH_OPTIMAL_PARTICLE_SYSTEM particleWithFile:@"water.plist"];
 		 BottleOpener *bottleOpener = [[BottleOpener alloc] initWithSpriteFrameName:@"bottleopenertrans.png"];
         [bottleOpener setPosition:spawnLocation];
         [sceneSpriteBatchNode addChild:bottleOpener z:ZValue];
+	}
+	if(objectType == kTreasureCoinType){
+		Coin *coin = [[Coin alloc] initWithSpriteFrameName:@"yellowcoin.png"];
+		[coin setPosition:spawnLocation];
+		[sceneSpriteBatchNode addChild:coin z:ZValue];
 	}
 }
 

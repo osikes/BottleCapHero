@@ -13,6 +13,7 @@
 {
 	CCAnimation *balancingonwater;	
 	BOOL isSmiling;
+	int Money;
 }
 
 
